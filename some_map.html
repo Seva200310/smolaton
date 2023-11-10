@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+
+<body>
+
+<div id="mainMap" class="map" style="margin-top: 100px;">
+
+</div>
+
+
+</body>
+<script>
+  alpha_id=0;
+  const alphaZonesCount=5;
+  const alphaZoneSize= { height: 600,width: 500};
+  const alphaZonesOffset=[[700,400]]
+
+  bravo_id=0;
+  const bravoZonesCount=alphaZonesCount*5;
+  const bravoZoneSize= { height: 400,width: 400};
+  const bravoZonesOffset=[[400,0],[1100,0],[0,500],[1100,1000],[400,1000],[1500,500]];
+
+
+  charlie_id=0;
+  const charlieZoneSize= { height: 300,width: 300};
+  const charlieZonesOffset=[[800,0],[100,200],[400,400],[1200,400],[1500,200],
+                            [800,1100],[100,900],[400,700],[1200,700],[1500,900]];
+  
+  delta_id=0;
+  const deltaZoneSize= { height: 200,width: 200};
+  const deltaZonesOffset=[[0,0],[200,0],[1500,0],[1700,0],
+                          [0,1200],[200,1200],[1500,1200],[1700,1200]];
+  echo_id=0;
+  const echoZoneSize= { height: 100,width: 100};
+  const echoZonesOffset=[[0,200],[0,300],[0,400],[800,300],[900,300],[1000,300],[1800,200],[1800,300],[1800,400],
+                        [0,900],[0,1000],[0,1100],[800,1000],[900,1000],[1000,1000],[1800,900],[1800,1000],[1800,1100]];
+  
+
+alphaZonesOffset.forEach((element) => {
+document.getElementById("mainMap").innerHTML+=`<div id="${}" style=" height:${alphaZoneSize["height"]}px;width:${alphaZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">A</div>`;
+}); 
+bravoZonesOffset.forEach((element) => {
+document.getElementById("mainMap").innerHTML+=`<div style=" height:${bravoZoneSize["height"]}px;width:${bravoZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">B</div>`;
+}); 
+charlieZonesOffset.forEach((element) => {
+document.getElementById("mainMap").innerHTML+=`<div style=" height:${charlieZoneSize["height"]}px;width:${charlieZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">C</div>`;
+}); 
+deltaZonesOffset.forEach((element) => {
+document.getElementById("mainMap").innerHTML+=`<div style=" height:${deltaZoneSize["height"]}px;width:${deltaZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">D</div>`;
+}); 
+echoZonesOffset.forEach((element) => {
+document.getElementById("mainMap").innerHTML+=`<div style=" height:${echoZoneSize["height"]}px;width:${echoZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">E</div>`;
+}); 
+
+</script>
+</html>
