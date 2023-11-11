@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<html>
+
+
+<body style="background-color: green;">
+<div class="blackout" style="position:fixed;display:none;width:100%;height:100%;justify-content:center;align-items:center;background:rgba(0,0,0,.7);z-index:100;"></div>
+<div class="strategicMenu" style="height:600px;width:400px;display:none; position:absolute;z-index: 1000; background-color:white; border: solid 3px ; border-color: black; ">
+  <img class="previewImg" src="https://waralbum.ru/wp-content/uploads/2014/12/osvobozgdenie-Elni_sentyabr-1941.jpg" width="150px" alt="альтернативный текст">
+  <div class="battleFieldInfo"><b>Ценность локации:500</b> </div>
+  <div class="articledInfo" style="margin-top:10px;">
+    <b>Статья:Смоле́нское сраже́ние (1941)</b>
+    <br>
+    <b>Смоле́нское сраже́ние (1941)</b> — комплекс оборонительных и наступательных операций, проведенных советскими войсками с целью не допустить прорыва германских войск на московском направлении в период с 10 июля до 10 сентября 1941 года. В разное время с советской стороны участвовали войска 4 фронтов: Западного, затем Резервного (с 19 июля), Центрального (с 24 июля) и Брянского (с 14 августа), с немецкой — группа армий «Центр» и авиация 2-го воздушного флота, а также часть сил группы армий «Север».</div>
+  <button type="button" style="height:50px;width:100%;background-color:red;margin-top: 20px;">Атаковать</button>
+  <button type="button" onclick="hideBattleMenu(this)" style="height:50px;width:100%;background-color:blue;margin-top: 20px;">Закрыть</button>
+
+
+</div>
+<div id="mainMap" class="mainMap" >
+
+</div>
+
+
+</body>
+<script>
+function showBattleMenu(_this){
+  marginLeft=_this.style.marginLeft;
+  marginLeft=_this.style.marginLeft.substring(0,_this.style.marginLeft.length-2);
+  //alert(Number(marginLeft)+Number(marginLeft));
+  _this.style.borderColor = "red";
+  document.getElementsByClassName("strategicMenu")[0].style.display="block";
+  document.getElementsByClassName("blackout")[0].style.display="block";
+  document.getElementsByClassName("strategicMenu")[0].style.marginLeft="700px";// _this.style.marginLeft+_this.style.width+'px';
+  //document.getElementsByClassName("strategicMenu")[0].style.marginTop=_this.style.marginLeft.substring(0,_this.style.marginLeft.length-2)-100+"px"// _this.style.marginTop+10+'px';
+}
+function hideBattleMenu(){
+  battleZones=Array.prototype.slice.call(document.getElementsByClassName("battleZone"));
+  //alert(battleZones);
+  battleZones.forEach((element) => element.borderColor = "black");
+  document.getElementsByClassName("strategicMenu")[0].style.display="none";
+  document.getElementsByClassName("blackout")[0].style.display="none";
+  document.getElementsByClassName("strategicMenu")[0].style.marginLeft="700px";// _this.style.marginLeft+_this.style.width+'px';
+  //document.getElementsByClassName("strategicMenu")[0].style.marginTop=_this.style.marginLeft.substring(0,_this.style.marginLeft.length-2)-100+"px"// _this.style.marginTop+10+'px';
+}
+function makeMapSector(){
+  //document.getElementsByClassName("mainMapu")[0].style.marginTop="100px";
+  let total=0;
+  alphaId=0;
+  const alphaZonesCount=5;
+  const alphaZoneSize= { height: 600,width: 500};
+  const alphaZonesOffset=[[700,400]]
+
+  bravoId=0;
+  const bravoZonesCount=alphaZonesCount*5;
+  const bravoZoneSize= { height: 400,width: 400};
+  const bravoZonesOffset=[[400,0],[1100,0],[0,500],[1100,1000],[400,1000],[1500,500]];
+
+
+  charlieId=0;
+  const charlieZoneSize= { height: 300,width: 300};
+  const charlieZonesOffset=[[800,0],[100,200],[400,400],[1200,400],[1500,200],
+                            [800,1100],[100,900],[400,700],[1200,700],[1500,900]];
+  
+  deltaId=0;
+  const deltaZoneSize= { height: 200,width: 200};
+  const deltaZonesOffset=[[0,0],[200,0],[1500,0],[1700,0],
+                          [0,1200],[200,1200],[1500,1200],[1700,1200]];
+  echoId=0;
+  const echoZoneSize= { height: 100,width: 100};
+  const echoZonesOffset=[[0,200],[0,300],[0,400],[800,300],[900,300],[1000,300],[1800,200],[1800,300],[1800,400],
+                        [0,900],[0,1000],[0,1100],[800,1000],[900,1000],[1000,1000],[1800,900],[1800,1000],[1800,1100]];
+  
+
+alphaZonesOffset.forEach((element) => {
+  document.getElementById("mainMap").innerHTML+=`<div id="${alphaId}a" class="battleZone" onclick="showBattleMenu(this)" style=" height:${alphaZoneSize["height"]}px;width:${alphaZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">A</div>`;
+  alphaId+=1;
+  total+=1;
+}); 
+
+bravoZonesOffset.forEach((element) => {
+  document.getElementById("mainMap").innerHTML+=`<div id="${bravoId}b" class="battleZone" onclick="showBattleMenu(this)" style=" height:${bravoZoneSize["height"]}px;width:${bravoZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">B</div>`;
+  bravoId+=1;
+  total+=1;
+}); 
+
+charlieZonesOffset.forEach((element) => {
+  document.getElementById("mainMap").innerHTML+=`<div id="${charlieId}c" class="battleZone" onclick="showBattleMenu(this)" style=" height:${charlieZoneSize["height"]}px;width:${charlieZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">C</div>`;
+  charlieId+=1;
+  total+=1;
+}); 
+
+deltaZonesOffset.forEach((element) => {
+  document.getElementById("mainMap").innerHTML+=`<div id="${deltaId}d" class="battleZone" onclick="showBattleMenu(this)" style=" height:${deltaZoneSize["height"]}px;width:${deltaZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">D</div>`;
+  deltaId+=1;
+  total+=1;
+});
+
+echoZonesOffset.forEach((element) => {
+  document.getElementById("mainMap").innerHTML+=`<div id="${echoId}e" class="battleZone" onclick="showBattleMenu(this)" style=" height:${echoZoneSize["height"]}px;width:${echoZoneSize["width"]}px;position:absolute;margin-left:${element[0]}px; margin-top:${element[1]}px; border:solid; border-color: black;">E</div>`;
+  echoId+=1;
+  total+=1;
+});
+//alert(total);
+}
+
+
+makeMapSector();
+
+</script>
+</html>
